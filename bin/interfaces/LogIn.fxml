@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInController">
+   <children>
+      <BorderPane prefHeight="449.0" prefWidth="750.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <Pane prefHeight="420.0" prefWidth="392.0" styleClass="linear-grad" stylesheets="@../application/application.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutX="14.0" layoutY="14.0" prefHeight="15.0" spacing="5.0">
+                     <children>
+                        <Circle fx:id="btnClose" fill="#fc5d57" onMouseClicked="#handleMouseEvent" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Circle fill="#fdbb2d" layoutX="16.0" layoutY="16.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Circle fill="#27c941" layoutX="38.0" layoutY="16.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="148.0" fitWidth="148.0" layoutX="121.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/logo100.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="121.0" layoutY="236.0" opacity="0.6" text="Holding V1" textFill="#ebe0e0">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="85.0" layoutY="276.0" text="Logiciel de gestion de bien immobilier" textAlignment="CENTER" textFill="#d7c3c3">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </left>
+         <center>
+            <StackPane fx:id="pnlStack" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="pnlSignUp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
+                     <children>
+                        <TextField layoutX="57.0" layoutY="192.0" prefHeight="36.0" prefWidth="239.0" />
+                        <TextField layoutX="56.0" layoutY="251.0" prefHeight="33.0" prefWidth="243.0" />
+                        <Button layoutX="119.0" layoutY="321.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="103.0" styleClass="bouton1" stylesheets="@../application/application.css" text="S'INSCRIRE" />
+                        <Label layoutX="57.0" layoutY="128.0" text="Inscription">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="btnBack" fitHeight="30.0" fitWidth="55.0" layoutX="41.0" layoutY="14.0" onMouseClicked="#handleMouseEvent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/icons8_back_24px_1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pnlSignIn" prefHeight="420.0" prefWidth="0.0" style="-fx-background-color: #FFF;">
+                     <children>
+                        <TextField fx:id="tfUsername" layoutX="61.0" layoutY="109.0" prefHeight="35.0" prefWidth="255.0" promptText="Nom d'utilisateur" />
+                        <PasswordField fx:id="tfPass" layoutX="61.0" layoutY="167.0" prefHeight="35.0" prefWidth="255.0" promptText="Mot de passe" />
+                        <Button fx:id="btnSignIn" layoutX="196.0" layoutY="270.0" mnemonicParsing="false" onAction="#openHome" prefHeight="35.0" prefWidth="120.0" styleClass="bouton1" stylesheets="@../application/application.css" text="SE CONNECTER" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSignUp" layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="35.0" prefWidth="280.0" styleClass="bouton2" stylesheets="@../application/application.css" text="Vous n'avez pas de compte ? Inscrivez-vous" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="lblForgot" layoutX="61.0" layoutY="279.0" text="Mot de passe oublié ?" textFill="#9a9696">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="112.0" layoutY="49.0" text="Connexion">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="error_message" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="225.0" prefHeight="17.0" prefWidth="286.0" textAlignment="CENTER" textFill="#f22222" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

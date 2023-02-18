@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="form_ajouter" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane onMouseClicked="#importer_image_test" prefHeight="400.0" prefWidth="900.0" style="-fx-border-radius: 20; -fx-background-color: #ccc; -fx-background-radius: 50;">
+         <children>
+            <TextField fx:id="txt_nom" layoutX="110.0" layoutY="39.0" prefHeight="28.0" prefWidth="156.0" promptText="Saisir le nom" />
+            <Label layoutX="311.0" layoutY="40.0" text="Prenom">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_prenom" layoutX="380.0" layoutY="39.0" prefHeight="28.0" prefWidth="156.0" promptText="Saisir le prenom" />
+            <Label layoutX="306.0" layoutY="113.0" text="N° Pièce">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_numero_piece" layoutX="380.0" layoutY="112.0" prefHeight="28.0" prefWidth="156.0" promptText="Saisir le numéro de pièce" />
+            <Label layoutX="14.0" layoutY="113.0" text="Type pièce">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="188.0" prefHeight="28.0" prefWidth="83.0" text="Adresse">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_adresse" layoutX="110.0" layoutY="188.0" prefHeight="28.0" prefWidth="156.0" promptText="Saisir l'adresse" />
+            <Label layoutX="8.0" layoutY="251.0" prefHeight="28.0" prefWidth="96.0" text="Téléphone">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_telephone" layoutX="110.0" layoutY="251.0" prefHeight="28.0" prefWidth="156.0" promptText="Saisir le numéro de téléphone" />
+            <Label layoutX="306.0" layoutY="188.0" prefHeight="28.0" prefWidth="67.0" text="Email">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_email" layoutX="380.0" layoutY="189.0" prefHeight="26.0" prefWidth="156.0" promptText="Saisir l'adresse email" />
+            <Label fx:id="lab_url" layoutX="591.0" layoutY="233.0" maxWidth="250.0" text="Aucune selectionnée">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="photo_locataire" fitHeight="200.0" fitWidth="250.0" layoutX="552.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/icons8_administrator_male_60px.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btn_enregister" layoutX="196.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#ajouter_locataire" prefHeight="38.0" prefWidth="230.0" styleClass="bouton" stylesheets="@../application/application.css" text="Enregister">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="552.0" layoutY="230.0" onMouseClicked="#importer_image" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/icons8_upload_20px_1.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="comboBox" layoutX="110.0" layoutY="112.0" prefHeight="28.0" prefWidth="156.0" />
+            <Label layoutX="29.0" layoutY="38.0" text="Nom">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="808.0" layoutY="14.0" onMouseClicked="#fermer_ajouter" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/icons8_cancel_30px.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="483.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#btn_vider_champ" prefHeight="38.0" prefWidth="230.0" styleClass="bouton1" stylesheets="@../application/application.css" text="Vider les champs">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets left="20.0" />
+   </padding>
+</VBox>

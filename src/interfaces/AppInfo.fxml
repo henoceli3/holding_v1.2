@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane fx:id="pnl_principal" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane fx:id="pnl_modifier" alignment="CENTER" prefHeight="367.0" prefWidth="910.0" style="-fx-background-color: #001C55;">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="462.0" minHeight="10.0" prefHeight="311.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <HBox prefHeight="483.0" prefWidth="910.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Le logiciel de gestion d'immeuble en JAVA est un outil de gestion complet permettant de gérer efficacement tous les aspects d'un immeuble, qu'il s'agisse d'un immeuble de bureaux, d'un immeuble résidentiel ou d'un centre commercial. Grâce à son interface intuitive et facile à utiliser, les propriétaires et les gestionnaires peuvent gérer les informations sur les locataires, les baux, les paiements, les réservations et les demandes de maintenance en temps réel. De plus, le logiciel permet d'optimiser la gestion des dépenses en centralisant l'ensemble des factures, en facilitant le suivi des paiements et en générant des rapports détaillés sur les coûts associés à chaque immeuble. Avec la mise en place de ce logiciel, les propriétaires et les gestionnaires peuvent améliorer l'efficacité de leur gestion immobilière, réduire les coûts de maintenance et de gestion, tout en offrant un meilleur service aux locataires." wrappingWidth="878.13671875">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Holding v1 offre également une fonctionnalité de suivi en temps réel des équipements et des installations de l'immeuble. Les propriétaires et les gestionnaires peuvent surveiller les équipements clés tels que les systèmes de chauffage, de ventilation et de climatisation, les ascenseurs, les escaliers mécaniques et les portes d'entrée. Cette fonctionnalité permet une réactivité optimale en cas de panne ou de dysfonctionnement, garantissant ainsi la sécurité des occupants de l'immeuble. De plus, grâce à la planification de la maintenance préventive, les équipements peuvent être entretenus régulièrement pour prévenir les pannes et les défaillances. La fonctionnalité de suivi des équipements permet également de générer des rapports sur l'utilisation et les coûts associés à chaque équipement, ce qui peut aider les propriétaires et les gestionnaires à prendre des décisions éclairées en matière de maintenance et d'investissement. En somme, cette fonctionnalité permet de garantir un environnement de travail ou de vie sûr et confortable pour les occupants de l'immeuble, tout en réduisant les coûts de maintenance et en améliorant l'efficacité de la gestion immobilière." wrappingWidth="878.13671875">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+</StackPane>

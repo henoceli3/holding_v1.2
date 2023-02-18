@@ -1,0 +1,110 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.linear-grad{
+	-fx-background-color: linear-gradient(to bottom left, #03045E, #0077B6);
+}
+
+/*boutons */
+.bouton-navigation{
+	-fx-background-color: transparent;
+}
+.bouton-navigation:hover{
+-fx-background-color: rgba(255,255,255,0.2);
+}
+.bouton-navigation:pressed{
+	-fx-background-color: #7156DD;
+}
+
+.bouton{
+	-fx-background-color: #2262C6;
+	-fx-text-fill:#FFF;
+}
+.bouton:hover{
+	-fx-background-color:#023E8A;
+	-fx-cursor: hand;
+}
+.bouton1{
+	-fx-background-color:#00B4D8;
+	-fx-text-fill:#FFF;
+}
+.bouton1:hover{
+	-fx-text-fill:#90E0EF;
+	-fx-cursor: hand;
+}
+.bouton1:pressed{
+	-fx-text-fill:#90E0EF;
+}
+
+.bouton2{
+	-fx-background-color: #D5CBEB;
+	-fx-background-radius: 20;
+	-fx-text-fill: #371894;
+	-fx-border-radius: 5;
+}
+
+.line-color{
+	-fx-background-color:  #2262C6;
+}
+.container{
+	-fx-background-color: rgba(255,255,255,0.2);
+	-fx-background-radius: 10;
+}
+.shadow{
+	-fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.2), 10.0, 0.0 ,0.0, 10.0) ;
+}
+.search-input{
+	-fx-background-radius: 20;
+	-fx-text-fill: #000;
+	-fx-prompt-text-fill: #D4CEE3;
+}
+.transparent{
+	-fx-background-color: rgba(0,0,0,0)
+}
+.white-background{
+	-fx-background-color: #fff;
+}
+.light-gray-background{
+	-fx-background-color: #F3F3F3;
+}
+
+
+/* TABLEVIEW */
+.table-view{
+	-fx-background-color: transparent;
+}
+.table-view:focused{
+	-fx-background-color: transparent;
+}
+.table-view .column-header,
+.table-view .column-header-background .filler{
+	-fx-cell-size:20;
+	-fx-background-color:  #2262C6;
+}
+.table-view .column-header-background .label{
+		-fx-background-color: #3c4f5e;
+		-fx-text-fill: #ffffff;
+		-fx-font-weight: bold;
+		
+}
+
+.table-view .table-cell{
+	-fx-text-fill: #3c4f5e;
+	-fx-font-size: 15;
+	-fx-alignment: center-left ;
+}
+.table-row-cell{
+	-fx-background-color: -fx-table-cell-border-color, #e9f3f9;
+	-fx-background-insets: 0, 0.0 0 1 0;
+	-fx-background-radius: 0.0em;
+}
+.table-row-cell:odd{
+	-fx-background-color: -fx-table-cell-border-color, #78A3C3;
+	-fx-background-insets: 0, 0.0 0 1 0;
+	-fx-background-radius: 0.0em;
+}
+.table-row-cell:selected{
+	-fx-background-color: #94c1e1;
+}
+.table-row-cell:selected .text{
+	-fx-fill: #ffffff;
+	-fx-text-fill: #ffffff;
+}
