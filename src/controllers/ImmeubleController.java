@@ -20,6 +20,7 @@ import com.holding.models.Immeuble;
 import com.holding.models.Locataire;
 import com.mysql.jdbc.Connection;
 
+import animatefx.animation.FadeInUp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -51,6 +52,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 public class ImmeubleController implements Initializable {
 	Connection cnx;	
@@ -402,6 +407,7 @@ public class ImmeubleController implements Initializable {
 		 }
 	 }
 	 
+	 
 	 @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
@@ -427,9 +433,9 @@ public class ImmeubleController implements Initializable {
 					else if (immeuble.getAdresse().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 						return true;
 					}				
-					else if (immeuble.getType().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					/*else if (immeuble.getType().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 						return true;
-					}
+					}*/
 					
 					else if (String.valueOf(immeuble.getPhoto()).indexOf(lowerCaseFilter)!= -1) 
 						return true;
@@ -442,7 +448,21 @@ public class ImmeubleController implements Initializable {
 			SortedList<Immeuble> sortedData = new SortedList<>(filterData);
 			
 			sortedData.comparatorProperty().bind(table_immeuble.comparatorProperty());
-			 table_immeuble.setItems(sortedData);
+			table_immeuble.setItems(sortedData);
 		}
+	 
+	 public void showNotification(NotificationType type_notif, String titre, String message) {
+			//librairie TrayTester
+			
+			TrayNotification notification = new TrayNotification();
+			AnimationType type =  AnimationType.POPUP;
+			
+			//parametrage de la notification
+			notification.setAnimationType(type);
+			notification.setTitle(titre);
+			notification.setMessage(message);
+			notification.setNotificationType(type_notif);
+			notification.showAndDismiss(Duration.millis(3000));	
+	}
 
 }
