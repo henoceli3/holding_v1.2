@@ -33,6 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -144,6 +145,43 @@ public class ImmeubleController implements Initializable {
     @FXML
     private TextField input_immeuble;
     
+    @FXML
+    private CheckBox chk_ascenseur;
+    
+    @FXML
+    private CheckBox chk_stationnement;
+    
+    /*id modify*/
+    @FXML
+    private TextField mdf_txt_adresse;
+
+    @FXML
+    private TextField mdf_txt_coutConstruction;
+
+    @FXML
+    private TextField mdf_txt_idProprietaire;
+
+    @FXML
+    private TextField mdf_txt_libelle;
+
+    @FXML
+    private TextField mdf_txt_nbApparte;
+
+    @FXML
+    private TextField mdf_txt_superficie; 
+    
+    @FXML
+    private TextField mdf_input_immeuble;
+    
+    @FXML
+    private CheckBox mdf_chk_ascenseur;
+    
+    @FXML
+    private CheckBox mdf_chk_stationnement;
+    
+    @FXML
+    private ImageView mdf_photo_immeuble;
+    
     private boolean update;
     void setUpdate(boolean b) {
         this.update = b;
@@ -183,6 +221,10 @@ public class ImmeubleController implements Initializable {
 	 void btn_ajouter_nouveau() {
 	    	pnl_ajouter.toFront();
 	 }
+    @FXML
+    void close() {
+    	pnl_liste.toFront();
+    }
     
      ImmeubleDao immeubleDao = new ImmeubleDao();
 	 List <Immeuble> immeubles = immeubleDao.getAllImmeuble();
@@ -353,6 +395,17 @@ public class ImmeubleController implements Initializable {
 		txt_nbApparte.setText("");
 		txt_coutConstruction.setText("");
 		photo_immeuble.setImage(null);
+		lab_url.setText("");
+	}
+	@FXML
+	void vider_champMdf() {
+		mdf_txt_idProprietaire.setText("");
+		mdf_txt_libelle.setText("");
+		mdf_txt_adresse.setText("");
+		mdf_txt_superficie.setText("");
+		mdf_txt_nbApparte.setText("");
+		mdf_txt_coutConstruction.setText("");
+		photo_immeuble.setImage(null);
 	}
 	
 	 @FXML
@@ -396,16 +449,24 @@ public class ImmeubleController implements Initializable {
      		
      		immeuble.setPhoto(fileName);
      		
+     		immeuble.setAscenseur(chk_ascenseur.isSelected());
+     		immeuble.setStationnement(chk_stationnement.isSelected());
+
+     		
      		/*immeubleDao.saveImmeuble(immeuble);*/
      		
      		if (update == false) {
     			immeubleDao.saveImmeuble(immeuble);
     			vider_champ();
+    			lab_url.setText("");
 			}else {
 				immeubleDao.updateImmeuble(immeuble);
 			}
 		 }
 	 }
+	 
+	 @FXML
+	 void Modifier_Immeuble() {}
 	 
 	 
 	 @Override
