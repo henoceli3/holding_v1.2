@@ -23,6 +23,125 @@
    <children>
       <StackPane fx:id="pnl_principal">
          <children>
+            <GridPane fx:id="pnl_modifier" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#vider_champ" prefHeight="367.0" prefWidth="910.0" style="-fx-background-color: #fff;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="462.0" minHeight="10.0" prefHeight="311.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="367.0" prefWidth="779.0" spacing="15.0">
+                     <children>
+                        <VBox prefHeight="367.0" prefWidth="238.0">
+                           <children>
+                              <Label text="Id Proprietaire">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_idProprietaire" prefHeight="35.0" prefWidth="238.0" promptText="Id proprietaire" />
+                              <Label layoutX="10.0" layoutY="10.0" text="Type d'immeuble">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="cbx_type" prefHeight="36.0" prefWidth="238.0" />
+                              <Label text="Libelle">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_libelle" prefHeight="35.0" prefWidth="238.0" promptText="libelle" />
+                              <Label layoutX="10.0" layoutY="179.0" text="Adresse">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_adresse" layoutX="10.0" layoutY="206.0" prefHeight="35.0" prefWidth="238.0" promptText="Adresse" />
+                           </children>
+                        </VBox>
+                        <VBox layoutX="20.0" layoutY="20.0" onMouseClicked="#importer_image" prefHeight="347.0" prefWidth="266.0">
+                           <children>
+                              <Label text="Superficie">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_superficie" prefHeight="35.0" prefWidth="366.0" promptText="Nom" />
+                              <Label layoutX="10.0" layoutY="10.0" text="Nombre d'appartements">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_nbApparte" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="238.0" promptText="Prénom" />
+                              <Label layoutX="10.0" layoutY="94.0" text="Cout construction">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txt_coutConstruction" layoutX="10.0" layoutY="121.0" prefHeight="35.0" prefWidth="238.0" promptText="Prénom" />
+                              <Pane prefHeight="19.0" prefWidth="257.0" />
+                              <CheckBox fx:id="chk_ascenseur" mnemonicParsing="false" text="Ascenseur">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font></CheckBox>
+                              <Pane prefHeight="18.0" prefWidth="257.0" />
+                              <CheckBox fx:id="chk_stationnement" mnemonicParsing="false" text="Parking">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font></CheckBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" onMouseClicked="#Ajouter_Immeuble" prefHeight="347.0" prefWidth="339.0">
+                           <children>
+                              <ImageView fx:id="photo_immeuble" fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8_administrator_male_60px.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER" prefHeight="51.0" prefWidth="394.0" spacing="20.0">
+                                 <children>
+                                    <ImageView fitHeight="25.0" fitWidth="27.0" onMouseClicked="#importer_image" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/icons/icons8_upload_20px_1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="lab_url" maxWidth="250.0" text="Aucune selectionnée">
+                                       <font>
+                                          <Font name="System Bold Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Pane prefHeight="106.0" prefWidth="252.0">
+                                 <children>
+                                    <Button layoutX="189.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#Modifier_Immeuble" prefHeight="38.0" prefWidth="149.0" styleClass="bouton" stylesheets="@../application/application.css" text="Modifier">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutY="32.0" mnemonicParsing="false" onMouseClicked="#vider_champ" prefHeight="38.0" prefWidth="177.0" styleClass="bouton1" stylesheets="@../application/application.css" text="Vider les champs">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/icons8_cancel_30px.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </GridPane>
             <GridPane fx:id="pnl_ajouter" alignment="CENTER" onMouseClicked="#vider_champ" prefHeight="367.0" prefWidth="910.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -81,8 +200,16 @@
                                  </font>
                               </Label>
                               <TextField fx:id="txt_coutConstruction" layoutX="10.0" layoutY="121.0" prefHeight="35.0" prefWidth="238.0" promptText="Prénom" />
-                              <CheckBox fx:id="chk_ascenseur" mnemonicParsing="false" text="Ascenseur" />
-                              <CheckBox fx:id="chk_stationnement" mnemonicParsing="false" text="Parking" />
+                              <Pane prefHeight="8.0" prefWidth="257.0" />
+                              <CheckBox fx:id="chk_ascenseur" mnemonicParsing="false" text="Ascenseur">
+                                 <font>
+                                    <Font name="System Bold Italic" size="19.0" />
+                                 </font></CheckBox>
+                              <Pane prefHeight="10.0" prefWidth="257.0" />
+                              <CheckBox fx:id="chk_stationnement" mnemonicParsing="false" text="Parking">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></CheckBox>
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" onMouseClicked="#Ajouter_Immeuble" prefHeight="347.0" prefWidth="339.0">
@@ -133,125 +260,6 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane fx:id="pnl_modifier" alignment="CENTER" prefHeight="367.0" prefWidth="910.0" style="-fx-background-color: #fff;">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="462.0" minHeight="10.0" prefHeight="311.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <HBox prefHeight="367.0" prefWidth="779.0" spacing="15.0">
-                     <children>
-                        <VBox prefHeight="367.0" prefWidth="238.0">
-                           <children>
-                              <Label text="Id Proprietaire">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="mdf_txt_idProprietaire" prefHeight="35.0" prefWidth="238.0" promptText="Id proprietaire" />
-                              <Label layoutX="10.0" layoutY="10.0" text="Type d'immeuble">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox fx:id="mdf_cbx_type" prefHeight="36.0" prefWidth="238.0" />
-                              <Label text="Libelle">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="mdf_txt_libelle" prefHeight="35.0" prefWidth="238.0" promptText="libelle" />
-                              <Label layoutX="10.0" layoutY="179.0" text="Adresse">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="mdf_txt_adresse" layoutX="10.0" layoutY="206.0" prefHeight="35.0" prefWidth="238.0" promptText="Adresse" />
-                           </children>
-                        </VBox>
-                        <VBox layoutX="20.0" layoutY="20.0" onMouseClicked="#importer_image" prefHeight="347.0" prefWidth="266.0">
-                           <children>
-                              <Label text="Superficie">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="mdf_txt_superficie" prefHeight="35.0" prefWidth="366.0" promptText="Nom" />
-                              <Label layoutX="10.0" layoutY="10.0" text="Nombre d'appartements">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="mdf_txt_nbApparte" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="238.0" promptText="Prénom" />
-                              <Label layoutX="10.0" layoutY="94.0" text="Cout construction">
-                                 <font>
-                                    <Font name="System Bold Italic" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="mdf_txt_coutConstruction" layoutX="10.0" layoutY="121.0" prefHeight="35.0" prefWidth="238.0" promptText="Prénom" />
-                              <CheckBox fx:id="mdf_chk_ascenseur" mnemonicParsing="false" text="Ascenseur">
-                                 <font>
-                                    <Font name="System Bold Italic" size="12.0" />
-                                 </font>
-                              </CheckBox>
-                              <CheckBox fx:id="mdf_chk_stationnement" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Parking">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </CheckBox>
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" onMouseClicked="#Ajouter_Immeuble" prefHeight="347.0" prefWidth="339.0">
-                           <children>
-                              <ImageView fx:id="mdf_photo_immeuble" fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../assets/icons/icons8_administrator_male_60px.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox alignment="CENTER" prefHeight="51.0" prefWidth="394.0" spacing="20.0">
-                                 <children>
-                                    <ImageView fitHeight="25.0" fitWidth="27.0" onMouseClicked="#importer_image" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../assets/icons/icons8_upload_20px_1.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="lab_url1" maxWidth="250.0" text="Aucune selectionnée">
-                                       <font>
-                                          <Font name="System Bold Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <Pane prefHeight="106.0" prefWidth="252.0">
-                                 <children>
-                                    <Button layoutX="189.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#Modifier_Immeuble" prefHeight="38.0" prefWidth="149.0" styleClass="bouton" stylesheets="@../application/application.css" text="Modifier">
-                                       <font>
-                                          <Font name="System Bold" size="17.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutY="32.0" mnemonicParsing="false" onMouseClicked="#vider_champMdf" prefHeight="38.0" prefWidth="177.0" styleClass="bouton1" stylesheets="@../application/application.css" text="Vider les champs">
-                                       <font>
-                                          <Font name="System Bold" size="17.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </VBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/icons/icons8_cancel_30px.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </GridPane>
             <GridPane fx:id="pnl_liste" prefHeight="367.0" prefWidth="910.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -261,20 +269,20 @@
                   <RowConstraints maxHeight="462.0" minHeight="10.0" prefHeight="311.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TableView fx:id="table_immeuble" prefHeight="405.0" prefWidth="910.0" stylesheets="@../application/application.css" GridPane.rowIndex="1">
+                  <TableView fx:id="table_immeuble" prefHeight="311.0" prefWidth="949.0" stylesheets="@../application/application.css" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="tb_idImmeuble" prefWidth="79.0" text="Id Immeuble" />
-                        <TableColumn fx:id="tb_idProprietaire" minWidth="0.0" prefWidth="295.0" text="Id Proprietaire" />
-                        <TableColumn fx:id="tb_libelle" minWidth="0.0" prefWidth="241.0" text="Libelle" />
-                        <TableColumn fx:id="tb_adresse" minWidth="0.0" prefWidth="241.0" text="Adresse" />
-                        <TableColumn fx:id="tb_superficie" minWidth="0.0" prefWidth="241.0" text="Superficie" />
-                        <TableColumn fx:id="tb_nombreAppartement" minWidth="0.0" prefWidth="241.0" text="Nombre D'appartement" />
-                        <TableColumn fx:id="tb_type" minWidth="0.0" prefWidth="241.0" text="Type" />
-                        <TableColumn fx:id="tb_ascenseur" minWidth="0.0" prefWidth="241.0" text="Ascenseur" />
-                        <TableColumn fx:id="tb_stationnement" minWidth="0.0" prefWidth="241.0" text="Stationnement" />
-                        <TableColumn fx:id="tb_coutConstruction" minWidth="0.0" prefWidth="241.0" text="Cout Construction" />
-                        <TableColumn fx:id="tb_photo" minWidth="0.0" prefWidth="79.19998779296873" text="Photo" />
-                        <TableColumn fx:id="tb_actions" minWidth="0.0" prefWidth="79.19998779296873" text="Actions" />
+                        <TableColumn fx:id="tb_idImmeuble" prefWidth="61.59997636079788" text="Id Immeuble" />
+                        <TableColumn fx:id="tb_idProprietaire" minWidth="0.0" prefWidth="67.19997787475586" text="Id Proprietaire" />
+                        <TableColumn fx:id="tb_libelle" minWidth="0.0" prefWidth="92.80001831054688" text="Libelle" />
+                        <TableColumn fx:id="tb_adresse" minWidth="0.0" prefWidth="85.59999084472656" text="Adresse" />
+                        <TableColumn fx:id="tb_superficie" maxWidth="114.4000244140625" minWidth="0.0" prefWidth="75.20001220703125" text="Superficie" />
+                        <TableColumn fx:id="tb_nombreAppartement" minWidth="0.0" prefWidth="80.79998779296875" text="Nombre D'appartement" />
+                        <TableColumn fx:id="tb_type" minWidth="0.0" prefWidth="69.5999755859375" text="Type" />
+                        <TableColumn fx:id="tb_ascenseur" minWidth="0.0" prefWidth="52.79998779296875" text="Ascenseur" />
+                        <TableColumn fx:id="tb_stationnement" minWidth="0.0" prefWidth="50.4000244140625" text="Stationnement" />
+                        <TableColumn fx:id="tb_coutConstruction" minWidth="0.0" prefWidth="66.39996337890625" text="Cout Construction" />
+                        <TableColumn fx:id="tb_photo" minWidth="0.0" prefWidth="58.4000244140625" text="Photo" />
+                        <TableColumn fx:id="tb_actions" minWidth="0.0" prefWidth="240.0" text="Actions" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -288,8 +296,8 @@
                               <Image url="@../assets/icons/search.png" />
                            </image>
                         </ImageView>
-                        <HBox prefHeight="45.0" prefWidth="369.0" />
-                        <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_ajouter_nouveau" prefHeight="25.0" prefWidth="155.0" styleClass="bouton" stylesheets="@../application/application.css" text="Ajouter Immeuble" HBox.hgrow="ALWAYS">
+                        <Pane prefHeight="56.0" prefWidth="371.0" />
+                        <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_ajouter_nouveau" prefHeight="25.0" prefWidth="155.0" styleClass="bouton" stylesheets="@../application/application.css" text="Ajouter Immeuble">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

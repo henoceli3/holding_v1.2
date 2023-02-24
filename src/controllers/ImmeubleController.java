@@ -7,20 +7,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.holding.dao.IImmeubleDao;
-import com.holding.dao.ILocataireDao;
+
 import com.holding.dao.ImmeubleDao;
-import com.holding.dao.LocataireDao;
 import com.holding.models.Immeuble;
-import com.holding.models.Locataire;
 import com.mysql.jdbc.Connection;
 
-import animatefx.animation.FadeInUp;
+import application.ConnexionMysql;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -33,6 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -65,7 +66,7 @@ public class ImmeubleController implements Initializable {
 	Immeuble immeuble = null;
 	
 	@FXML
-    private ComboBox<?> cbx_type;
+    private ComboBox<String> cbx_type;
 
     @FXML
     private Label lab_url;
@@ -151,70 +152,39 @@ public class ImmeubleController implements Initializable {
     @FXML
     private CheckBox chk_stationnement;
     
-    /*id modify*/
-    @FXML
-    private TextField mdf_txt_adresse;
-
-    @FXML
-    private TextField mdf_txt_coutConstruction;
-
-    @FXML
-    private TextField mdf_txt_idProprietaire;
-
-    @FXML
-    private TextField mdf_txt_libelle;
-
-    @FXML
-    private TextField mdf_txt_nbApparte;
-
-    @FXML
-    private TextField mdf_txt_superficie; 
-    
-    @FXML
-    private TextField mdf_input_immeuble;
-    
-    @FXML
-    private CheckBox mdf_chk_ascenseur;
-    
-    @FXML
-    private CheckBox mdf_chk_stationnement;
-    
-    @FXML
-    private ImageView mdf_photo_immeuble;
-    
+    ObservableList<String> type_liste = FXCollections.observableArrayList("Maison unifamiliale","Appartement en copropriété","Maison en rangée","Immeuble résidentiel à logements multiples","Immeuble commercial");
+   
     private boolean update;
     void setUpdate(boolean b) {
         this.update = b;
     }
+    private Integer idImmeubleST;
     
     void setTextField(Integer idImmeuble, int idProprietaire, String libelle, String adresse,
 			Integer superficie, Short nombreAppartement, String type, Boolean ascenseur, Boolean stationnement,
 			Integer coutConstruction, String photo) {
 		// TODO Auto-generated method stub
-		tb_adresse.setText(adresse);
-		tb_libelle.setText(libelle);
-		tb_photo.setText(photo);
+    	txt_adresse.setText(adresse);
+    	txt_libelle.setText(libelle);
+		lab_url.setText(photo);
+	
+		chk_ascenseur.setSelected(ascenseur);
 		
-		String ascenseurX = String.valueOf(adresse);
-		tb_ascenseur.setText(ascenseurX);
-		
-		String stationnementX = String.valueOf(ascenseur);
-		tb_stationnement.setText(stationnementX);
+		chk_stationnement.setSelected(stationnement);
 		
 		String idProprietaireX = String.valueOf(idProprietaire);
-		tb_idProprietaire.setText(idProprietaireX);
-		
-		String idImmeubleX = String.valueOf(idImmeuble);
-		tb_idImmeuble.setText(idImmeubleX);
+		txt_idProprietaire.setText(idProprietaireX);
 		
 		String superficieX = String.valueOf(superficie);
-		tb_superficie.setText(superficieX);
+		txt_superficie.setText(superficieX);
+		
+		String coutConstructionX = String.valueOf(coutConstruction);
+		txt_coutConstruction.setText(coutConstructionX);
 		
 		String nbAppartX = String.valueOf(nombreAppartement);
-		tb_nombreAppartement.setText(nbAppartX);
-		
-		String typeX = String.valueOf(type);
-		tb_type.setText(typeX);
+		txt_nbApparte.setText(nbAppartX);
+		/*String typeX = String.valueOf(type);
+		cbx_type.setText(typeX);*/
 	}
 	
     @FXML
@@ -274,7 +244,7 @@ public class ImmeubleController implements Initializable {
 	                	   ImageView imageViewEditer = new ImageView(imageEditer);
 	                	   imageViewEditer.setPreserveRatio(true);
 	                	   imageViewEditer.setPickOnBounds(true);
-	                	   imageViewEditer.setFitWidth(15.0);
+	                	   imageViewEditer.setFitWidth(15.0);	
 	                	   imageViewEditer.setFitHeight(15.0);
 	                	   
 	                	   //icon du bouton supprimer
@@ -320,7 +290,7 @@ public class ImmeubleController implements Initializable {
 	                  				immeubleDao.deleteImmeuble(immeuble.getIdImmeuble()); 
 	                  				refreshTable();
 							}  else {
-								Alert alert = new Alert(AlertType.WARNING,"Veuillez selectionner une ligne de l'immeuble pour le Supprimer définitivement !.",javafx.scene.control.ButtonType.OK);
+								Alert alert = new Alert(AlertType.WARNING,"Veuillez selectionner une ligne de l'immeuble pour la Supprimer définitivement !.",javafx.scene.control.ButtonType.OK);
 								alert.showAndWait();
 							}                    	  
 
@@ -330,39 +300,26 @@ public class ImmeubleController implements Initializable {
 	                       editIcon.setOnMouseClicked((MouseEvent event) -> {
 	                           
 	                           immeuble = table_immeuble.getSelectionModel().getSelectedItem();
-	                         //Si la liste est vide
-	                           if (immeuble != null) {
-	                        	   FXMLLoader loader = new FXMLLoader ();
-	                               loader.setLocation(getClass().getResource("/interfaces/EditImmeuble.fxml"));                            
-	                              
-	                               try {
-	                                   loader.load();
-	                               } catch (IOException ex) {
-	                                   Logger.getLogger(ImmeubleController.class.getName()).log(Level.SEVERE, null, ex);
-	                               }
-	                               
-	                               ImmeubleController addImmeubleController = loader.getController();
-	                               addImmeubleController.setUpdate(true);
-	                               addImmeubleController.setTextField(immeuble.getIdImmeuble(), immeuble.getIdProprietaire(),immeuble.getLibelle(),immeuble.getAdresse(),immeuble.getSuperficie(),immeuble.getNombreAppartement(),immeuble.getType(),immeuble.getAscenseur(),immeuble.getStationnement(),immeuble.getCoutConstruction(),immeuble.getPhoto());
-	                               Parent parent = loader.getRoot();
-	                               Stage stage = new Stage();
-	                               stage.setScene(new Scene(parent));
-	                               stage.initStyle(StageStyle.UTILITY);
-	                               stage.show();
+	                           
+	                         //Si la liste n'est pas vide
+	                        if (immeuble != null) {
+	                        	pnl_modifier.toFront();
+	                        	idImmeubleST = immeuble.getIdImmeuble();
+	                        	setTextField(immeuble.getIdImmeuble(), immeuble.getIdProprietaire(),immeuble.getLibelle(),immeuble.getAdresse(),immeuble.getSuperficie(),immeuble.getNombreAppartement(),immeuble.getType(),immeuble.getAscenseur(),immeuble.getStationnement(),immeuble.getCoutConstruction(),immeuble.getPhoto());
 	                               
 							}else {
 								Alert alert = new Alert(AlertType.WARNING,"Veuillez selectionner une ligne de locataire pour voir plus d'information.",javafx.scene.control.ButtonType.OK);
 								alert.showAndWait();
-							}
-	                           HBox managebtn = new HBox(editIcon, deleteIcon);
-	                           managebtn.setStyle("-fx-alignment:center");
-	                           HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-	                           HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+							}  
+	                      });
+	                       HBox managebtn = new HBox(editIcon, deleteIcon);
+                           managebtn.setStyle("-fx-alignment:center");
+                           HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
+                           HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
 
-	                           setGraphic(managebtn);
+                           setGraphic(managebtn);
 
-	                           setText(null);
-	                       });
+                           setText(null);
 	                   }
 	        	   }
 	           };
@@ -397,19 +354,10 @@ public class ImmeubleController implements Initializable {
 		photo_immeuble.setImage(null);
 		lab_url.setText("");
 	}
-	@FXML
-	void vider_champMdf() {
-		mdf_txt_idProprietaire.setText("");
-		mdf_txt_libelle.setText("");
-		mdf_txt_adresse.setText("");
-		mdf_txt_superficie.setText("");
-		mdf_txt_nbApparte.setText("");
-		mdf_txt_coutConstruction.setText("");
-		photo_immeuble.setImage(null);
-	}
 	
 	 @FXML
 	 void Ajouter_Immeuble() {
+		 
 		 String txtIdProprietaire = txt_idProprietaire.getText();
 		 int intIdProprietaire = Integer.parseInt(txtIdProprietaire);
 		 String txtLibelle = txt_libelle.getText();
@@ -423,7 +371,7 @@ public class ImmeubleController implements Initializable {
 		 File image = new File(lab_url.getText());
 		 
 		 if(!txtIdProprietaire.equals("") && !txtLibelle.equals("") && !txtAdresse.equals("") && !txtSuperficie.equals("")) {
-			 IImmeubleDao immeubleDao = new ImmeubleDao();
+			 /*IImmeubleDao immeubleDao = new ImmeubleDao();*/
 	    	 Immeuble immeuble = new Immeuble();
 	    	 
 	    	 immeuble.setIdProprietaire(intIdProprietaire);
@@ -432,49 +380,108 @@ public class ImmeubleController implements Initializable {
 	    	 immeuble.setSuperficie(intSuperficie);
 	    	 immeuble.setNombreAppartement((short) intNbApparte);
 	    	 immeuble.setCoutConstruction(intCoutConstruction);
+	    	 immeuble.setAscenseur(chk_ascenseur.isSelected());
+     		 immeuble.setStationnement(chk_stationnement.isSelected());
+     		 immeuble.setType(cbx_type.getValue());
 	    	 
-	    	String directory = "src\\assets\\images";
-     		String fileName = image.getName();
-     		File newFile = new File(directory + "/" + fileName);
-     		try (FileInputStream is = new FileInputStream(image);
-     		FileOutputStream os = new FileOutputStream(newFile)) {
-     		byte[] buffer = new byte[1024];
-     		int length;
-     		while ((length = is.read(buffer)) > 0) {
-     		os.write(buffer, 0, length);
-     		}
-     		} catch (IOException e) {
-     		e.printStackTrace();
-     		}
-     		
+	    	 String directory = "src\\assets\\images";
+	  		 String fileName = image.getName();
+	  		 File newFile = new File(directory + "/" + fileName);
+	  		 try (FileInputStream is = new FileInputStream(image);
+	  		 FileOutputStream os = new FileOutputStream(newFile)) {
+	  		 byte[] buffer = new byte[1024];
+	  		 int length;
+	  		 while ((length = is.read(buffer)) > 0) {
+	  		    os.write(buffer, 0, length);
+	  		 }
+	  		 } catch (IOException e) {
+	  		    e.printStackTrace();
+	  		 }
+	  		 
      		immeuble.setPhoto(fileName);
-     		
-     		immeuble.setAscenseur(chk_ascenseur.isSelected());
-     		immeuble.setStationnement(chk_stationnement.isSelected());
-
-     		
-     		/*immeubleDao.saveImmeuble(immeuble);*/
-     		
-     		if (update == false) {
+     		immeubleDao.saveImmeuble(immeuble);
+     		close();
+     		refreshTable();
+     		 
+     		/*if (update == false) {
     			immeubleDao.saveImmeuble(immeuble);
     			vider_champ();
-    			lab_url.setText("");
 			}else {
 				immeubleDao.updateImmeuble(immeuble);
-			}
+			}*/
 		 }
 	 }
 	 
-	 @FXML
-	 void Modifier_Immeuble() {}
+	 @SuppressWarnings("unlikely-arg-type")
+	@FXML
+	 void Modifier_Immeuble() throws SQLException {
+		 File image = new File(lab_url.getText());	 
+		 
+		 Alert alert;
+		 if(txt_idProprietaire.getText().isEmpty() || txt_libelle.getText().isEmpty() || txt_adresse.getText().isEmpty() || txt_nbApparte.getText().isEmpty()) {
+			    alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error Message");
+				alert.setHeaderText(null);
+				alert.setContentText("Remplissez tous les champs s'il vous plait ");
+				alert.showAndWait();
+		 }else {
+			    alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("CONFIRMATION MESSAGE");
+				alert.setHeaderText(null);
+				alert.setContentText("Êtes vous sures de vouloir modifier les Informations de l'immeuble: "
+						             + txt_libelle.getText() + " ? Cette action est irreversible");
+				Optional<ButtonType> option = alert.showAndWait();
+				
+				if (option.get().equals(ButtonType.OK)) {
+					for(Immeuble e: immeubleDao.getAllImmeuble()) {
+						
+						if(e.getLibelle().equals(txt_libelle)) {
+							
+							 e.setIdProprietaire(Integer.parseInt(txt_idProprietaire.getText()));
+					    	 e.setLibelle(txt_libelle.getText());
+					    	 e.setAdresse(txt_adresse.getText());
+					    	 e.setSuperficie(Integer.parseInt(txt_superficie.getText()));
+					    	 e.setNombreAppartement((short) Integer.parseInt(txt_nbApparte.getText()));
+					    	 e.setCoutConstruction(Integer.parseInt(txt_coutConstruction.getText()));
+					    	 e.setAscenseur(chk_ascenseur.isSelected());
+					     	 e.setStationnement(chk_stationnement.isSelected());
+					     	 
+					    	    String directory = "src\\assets\\images";
+					     		String fileName = image.getName();
+					     		File newFile = new File(directory + "/" + fileName);
+					     		try (FileInputStream is = new FileInputStream(image);
+					     		FileOutputStream os = new FileOutputStream(newFile)) {
+					     		byte[] buffer = new byte[1024];
+					     		int length;
+					     		while ((length = is.read(buffer)) > 0) {
+					     		  os.write(buffer, 0, length);
+					     		}
+					     		} catch (IOException a) {
+					     		  a.printStackTrace();
+					     		}
+					     		
+					         e.setPhoto(fileName);	
+					         
+					     	 immeubleDao.updateImmeuble(e);
+					     	 
+					     	close();
+					     	refreshTable();
+						}
+					}
+				}
+		 }
+	 }
 	 
 	 
 	 @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
-		    showImmeuble();
+		      showImmeuble();
+		   //gestion de la combobox des types
+			 cbx_type.setItems(type_liste);
 		    
-		 // rechercher un locataire
+		    
+		    // rechercher un locataire
 			ImmeubleDao immeubleDao = new ImmeubleDao();
 			List <Immeuble> immeubles = immeubleDao.getAllImmeuble();
 			ObservableList <Immeuble> liste_Immeubles = FXCollections.observableArrayList(immeubles);		
